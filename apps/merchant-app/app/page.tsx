@@ -1,3 +1,7 @@
-export default function Home() {
-  return <div className="text-2xl"> Hello World</div>;
+export default function Page() {
+  return (
+    <main>
+      <h1>Shared State Example</h1>
+    </main>
+  );
 }

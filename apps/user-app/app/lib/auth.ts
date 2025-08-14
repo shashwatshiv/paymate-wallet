@@ -9,7 +9,7 @@ export const authOptions = {
       credentials: {
         phone: {
           label: "Phone Number",
-          type: "text",
+          type: "number",
           placeholder: "93XXX-XXXXX",
         },
         password: {
@@ -60,8 +60,10 @@ export const authOptions = {
   ],
   secret: process.env.JWT_SECRET || "secret",
   callbacks: {
-    async session({ token, session }: any) {
-      session.user.id = token.sub;
+    async session({ session, token }: any) {
+      if (session?.user && token?.sub) {
+        session.user.id = token.sub;
+      }
       return session;
     },
   },

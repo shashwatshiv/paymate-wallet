@@ -8,8 +8,9 @@ export const TextInput = ({
 }: {
   type: string;
   placeholder: string;
-  onChange: (value:string) => void;
+  onChange: (value: string) => void;
   label: string;
+  // todo : remove increament decreament from text field
 }) => {
   return (
     <div className="pt-2">
@@ -20,7 +21,7 @@ export const TextInput = ({
         onChange={(e) => onChange(e.target.value)}
         type={type}
         id="first_name"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className=" number-to-text bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder={placeholder}
       />
     </div>

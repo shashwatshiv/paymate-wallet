@@ -57,6 +57,7 @@ export const AddMoney = () => {
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
+              // todo : mininum amount that can be added
               await createOnRampTxn(amount, providerBank);
               window.location.href = redirectUrl || "";
             }}

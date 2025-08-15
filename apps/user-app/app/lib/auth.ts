@@ -39,6 +39,9 @@ export const authOptions = {
           }
           return null;
         }
+
+      // todo : signup page with email and name
+
         try {
           const user = await prisma.user.create({
             data: {

@@ -6,7 +6,7 @@ const AppbarClient = () => {
   const session = useSession();
   return (
     <Appbar
-      user={session.data?.user}
+      user={session.data?.user?.name}
       onSignin={signIn}
       onSignout={signOut}
     ></Appbar>

@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
 app.post("/hdfcWebHook", async (req, res) => {
   //  todo : add zod validation here
   //  todo : check if request came from bank only
+  // check if onramp transaction is processing or not if: proceed else fail.
   const paymentInformation = {
     token: req.body.token,
     user_id: req.body.user_identifer,

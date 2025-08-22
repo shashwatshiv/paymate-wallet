@@ -30,19 +30,21 @@ export const AddMoney = () => {
     SUPPORTED_BANKS[0]?.name || "",
   );
   const [amount, setAmount] = useState(0);
+
   return (
-    <Card title="Add Money">
-      <div className="w-full">
+    <Card title="Add Money to Wallet">
+      <div className="space-y-6">
         <TextInput
-          label={"Amount"}
-          placeholder={"Amount"}
-          type={"number"}
+          label="Amount (₹)"
+          placeholder="Enter amount"
+          type="number"
           onChange={(e) => {
             setAmount(Number(e) * 100);
           }}
         />
-        <div className="py-4 text-left">Bank</div>
+
         <Select
+          label="Select Bank"
           onSelect={(value) => {
             setRedirectUrl(
               SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || "",
@@ -54,13 +56,15 @@ export const AddMoney = () => {
             value: x.name,
           }))}
         />
-        <div className="flex justify-center pt-4">
+
+        <div className="pt-4">
           <Button
             onClick={async () => {
-              // todo : mininum amount that can be added
               await createOnRampTxn(amount, providerBank);
               window.location.href = redirectUrl || "";
             }}
+            className="w-full"
+            size="lg"
           >
             Add Money
           </Button>

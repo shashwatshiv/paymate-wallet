@@ -2,3 +2,34 @@
 
 @source "../node_modules/@repo/ui";
 
+@layer base {
+  html {
+    @apply bg-gray-900 text-gray-100;
+  }
+  
+  body {
+    @apply bg-gray-900 text-gray-100 min-h-screen;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700/50;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900;
+  }
+  
+  .accent-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent;
+  }
+}

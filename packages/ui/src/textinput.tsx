@@ -5,24 +5,27 @@ export const TextInput = ({
   placeholder,
   onChange,
   label,
+  className = "",
 }: {
   type: string;
   placeholder: string;
   onChange: (value: string) => void;
   label: string;
+  className?: string;
   // todo : remove increament decreament from text field
 }) => {
   return (
-    <div className="pt-2">
-      <label className="block mb-2 text-sm font-medium text-gray-900">
+    <div className={`space-y-2 ${className}`}>
+      <label className="block text-sm font-medium text-gray-300">
         {label}
       </label>
       <input
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
         type={type}
-        id="first_name"
-        className=" number-to-text bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder={placeholder}
+        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
       />
     </div>
   );

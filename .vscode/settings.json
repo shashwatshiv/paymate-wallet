@@ -3,5 +3,7 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+  "window.zoomLevel": 1.25,
+  "window.zoomPerWindow": false
 }

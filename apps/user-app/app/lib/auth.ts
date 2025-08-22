@@ -1,7 +1,7 @@
 import { prisma } from "@repo/db";
 import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import z from "zod";
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -9,7 +9,7 @@ export const authOptions = {
       credentials: {
         phone: {
           label: "Phone Number",
-          type: "number",
+          type: "text",
           placeholder: "93XXX-XXXXX",
         },
         password: {
@@ -19,7 +19,18 @@ export const authOptions = {
         },
       },
       async authorize(credentials: any) {
-        const hashedPassword = await bcrypt.hash(credentials.password, 10);
+        console.log(credentials);
+
+        const validInput = z.safeParse(signinInput, credentials);
+        console.log(validInput);
+
+        if (!validInput) {
+          return {
+            error: "invalid inputs",
+          };
+        }
+
+        // const hashedPassword = await bcrypt.hash(credentials.password, 10);
         const existingUser = await prisma.user.findFirst({
           where: {
             number: credentials.phone,
@@ -40,23 +51,23 @@ export const authOptions = {
           return null;
         }
 
-      // todo : signup page with email and name
+        // todo : signup page with email and name
 
-        try {
-          const user = await prisma.user.create({
-            data: {
-              number: credentials.phone,
-              password: hashedPassword,
-            },
-          });
-          return {
-            id: user.id.toString(),
-            name: user.name,
-            email: user.number,
-          };
-        } catch (e) {
-          console.log(e);
-        }
+        // try {
+        //   const user = await prisma.user.create({
+        //     data: {
+        //       number: credentials.phone,
+        //       password: hashedPassword,
+        //     },
+        //   });
+        //   return {
+        //     id: user.id.toString(),
+        //     name: user.name,
+        //     email: user.number,
+        //   };
+        // } catch (e) {
+        //   console.log(e);
+        // }
         return null;
       },
     }),
@@ -71,3 +82,8 @@ export const authOptions = {
     },
   },
 };
+
+const signinInput = z.object({
+  phone: z.string().length(10),
+  password: z.string().min(6),
+});

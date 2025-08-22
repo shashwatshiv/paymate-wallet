@@ -1,6 +1,6 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const SidebarItem = ({
   href,
@@ -11,23 +11,24 @@ export const SidebarItem = ({
   title: string;
   icon: React.ReactNode;
 }) => {
-  const router = useRouter();
   const pathname = usePathname();
-  const selected = pathname === href;
+  const isActive = pathname === href;
 
   return (
-    <div
-      className={`flex ${selected ? "text-[#6a51a6]" : "text-slate-500"} hover:bg-amber-100 cursor-pointer  p-2 pl-8`}
-      onClick={() => {
-        router.push(href);
-      }}
+    <Link
+      href={href}
+      className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+        isActive
+          ? "accent-gradient text-white shadow-lg shadow-blue-500/25"
+          : "text-gray-300 hover:bg-gray-800 hover:text-gray-100"
+      }`}
     >
-      <div className="pr-2">{icon}</div>
       <div
-        className={`font-bold ${selected ? "text-[#6a51a6]" : "text-slate-500"}`}
+        className={`${isActive ? "text-white" : "text-gray-400 group-hover:text-gray-200"}`}
       >
-        {title}
+        {icon}
       </div>
-    </div>
+      <span className="font-medium">{title}</span>
+    </Link>
   );
 };

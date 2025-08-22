@@ -4,9 +4,11 @@ import { Appbar } from "@repo/ui/appbar";
 
 const AppbarClient = () => {
   const session = useSession();
+  console.log(session.data?.user);
+
   return (
     <Appbar
-      user={session.data?.user?.name}
+      user={session.data?.user}
       onSignin={signIn}
       onSignout={signOut}
     ></Appbar>

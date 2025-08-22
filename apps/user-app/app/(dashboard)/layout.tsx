@@ -2,14 +2,14 @@ import { SidebarItem } from "../../components/SidebarItem";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex">
-      <div className="w-72 border-r border-slate-300 min-h-screen  pt-28">
-        <div>
-          <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
+    <div className="flex min-h-screen bg-gray-900">
+      <div className="w-72 glass-effect border-r border-gray-700/50 min-h-screen pt-20">
+        <div className="p-6 space-y-2">
+          <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Dashboard" />
           <SidebarItem
             href={"/transfer"}
             icon={<TransferIcon />}
-            title="Transfer"
+            title="Add Money"
           />
           <SidebarItem
             href={"/transactions"}
@@ -19,11 +19,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <SidebarItem
             href={"/p2p"}
             icon={<P2PTransfer />}
-            title="P2P Transfer"
-          ></SidebarItem>
+            title="Send Money"
+          />
         </div>
       </div>
-      {children}
+      <div className="flex-1 p-6">
+        {children}
+      </div>
     </div>
   );
 };

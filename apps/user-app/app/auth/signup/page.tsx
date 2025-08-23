@@ -33,7 +33,8 @@ const Page = () => {
     setError("");
     const response = await createUser(name, email, phoneNumber, password);
     if ("error" in response && response.error) {
-      setError("Signup failed. Please check your details and try again.");
+      //    setError("Signup failed. Please check your details and try again.");
+      setError(response.error.toString());
     } else {
       router.push("/auth/signin?success=1");
     }

@@ -13,6 +13,7 @@ const SendMoneyCard = () => {
   const [error, setError] = useState("");
   const [paymentDone, setpaymentDone] = useState(false);
   const handleSendMoney = async () => {
+    setError("");
     setpaymentDone(false);
     if (!phoneNumber || !amount) {
       setError("Please fill in all fields");
@@ -35,7 +36,11 @@ const SendMoneyCard = () => {
       setAmount(0);
       setpaymentDone(true);
     } catch (error) {
-      setError("Failed to send money. Please try again.");
+      console.log(error);
+
+      setError(
+        "Failed to send money. Please try again. Kindly check your balance",
+      );
     } finally {
       setIsLoading(false);
     }

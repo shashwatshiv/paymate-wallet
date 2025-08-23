@@ -41,7 +41,7 @@ export const AddMoney = () => {
       setError("Min. Amount allowed is ₹100");
       return;
     } else {
-      const hello = await createOnRampTxn(amount, providerBank);
+      await createOnRampTxn(amount, providerBank);
       window.location.href = redirectUrl || "";
     }
   }

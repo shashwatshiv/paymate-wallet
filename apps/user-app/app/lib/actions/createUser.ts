@@ -16,10 +16,20 @@ export default async function createUser(
   });
 
   if (!validInput.success) {
-    return { error: validInput.error };
+    return { error: " invalid input" };
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
+    const exist = await prisma.user.findFirst({
+      where: {
+        number: phoneNumber,
+      },
+    });
+    if (exist) {
+      return {
+        error: "Phone Number already taken",
+      };
+    }
     const user = await prisma.user.create({
       data: {
         name: name,
@@ -29,6 +39,14 @@ export default async function createUser(
       },
     });
     if (user) {
+      const initialAmount = Math.ceil(Math.random() * 100000);
+      await prisma.balance.create({
+        data: {
+          userId: user.id,
+          amount: initialAmount,
+          locked: 0,
+        },
+      });
       return user;
     }
   } catch (error) {

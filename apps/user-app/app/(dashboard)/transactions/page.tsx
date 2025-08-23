@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { prisma } from "@repo/db";
-import { Card } from "../../../components/Card";
+import { Card } from "@repo/ui/card";
 
 export default async function Transactions() {
   const session = await getServerSession(authOptions);

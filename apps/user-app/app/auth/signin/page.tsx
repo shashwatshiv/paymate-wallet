@@ -1,12 +1,12 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { Card } from "@repo/ui/card";
 import { TextInput } from "@repo/ui/textinput";
 import { Button } from "@repo/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-const page = () => {
+const Page = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -79,7 +79,7 @@ const page = () => {
             </div>
 
             <p className="my-4 ">
-              Don't have an account ?
+              Don&apos;t have an account ?
               <button
                 className="underline hover:cursor-pointer"
                 onClick={() => {
@@ -96,4 +96,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

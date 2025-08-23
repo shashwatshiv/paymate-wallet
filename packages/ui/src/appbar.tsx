@@ -1,24 +1,8 @@
 import { Button } from "./button";
 import { Avatar } from "./avatar";
+import WalletIcon from "./WalletIcon";
 
 // Wallet/Payment Icon Component
-const WalletIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="text-white"
-  >
-    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-    <path d="M18 12a2 2 0 0 0-2 2v4h4v-4a2 2 0 0 0-2-2z" />
-  </svg>
-);
 
 interface AppbarProps {
   user?: {
@@ -27,8 +11,8 @@ interface AppbarProps {
     image?: string | null;
   };
   // TODO: can u figure out what the type should be here?
-  onSignin: any;
-  onSignout: any;
+  onSignin: () => void;
+  onSignout: () => void;
 }
 
 export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
@@ -48,7 +32,7 @@ export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
               className="flex hover:cursor-pointer items-center space-x-3"
             >
               <div className="w-8 h-8 rounded-lg accent-gradient flex items-center justify-center">
-                <WalletIcon />
+                <WalletIcon width={20} height={20} />
               </div>
               <div className="text-3xl font-bold text-gradient">PayMate</div>
             </div>

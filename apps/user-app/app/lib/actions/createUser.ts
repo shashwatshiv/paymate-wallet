@@ -1,7 +1,7 @@
 "use server";
 import { prisma } from "@repo/db";
 import bcrypt from "bcrypt";
-import z, { email } from "zod";
+import z from "zod";
 export default async function createUser(
   name: string,
   email: string,

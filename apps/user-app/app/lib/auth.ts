@@ -22,7 +22,6 @@ export const authOptions = {
         if (!credentials?.phone || !credentials?.password) return null;
         try {
           const validInput = z.safeParse(signinInput, credentials);
-          console.log(validInput);
 
           if (!validInput.success) {
             throw new Error(validInput.error.message);

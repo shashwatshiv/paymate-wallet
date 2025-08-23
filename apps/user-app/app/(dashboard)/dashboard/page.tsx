@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { prisma } from "@repo/db";
-import { Card } from "../../../components/Card";
-import { Button } from "@repo/ui/button";
+import { Card } from "@repo/ui/card";
 import QuickActions from "../../../components/QuickActions";
 
 async function getBalance() {

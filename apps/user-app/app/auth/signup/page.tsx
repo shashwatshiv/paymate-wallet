@@ -5,7 +5,7 @@ import { TextInput } from "@repo/ui/textinput";
 import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";
 import createUser from "../../lib/actions/createUser";
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -100,4 +100,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

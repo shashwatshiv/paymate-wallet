@@ -35,7 +35,7 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
           />
         </div>
       </div>
-      <div className="flex-1 p-6">{children}</div>
+      <div className="flex-1 p-6 pb-20">{children}</div>
     </div>
   );
 };

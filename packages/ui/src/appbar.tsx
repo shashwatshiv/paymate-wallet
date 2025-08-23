@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "./button";
 import { Avatar } from "./avatar";
 import WalletIcon from "./WalletIcon";
+import Hamburger from "../../../apps/user-app/components/hamburger";
 
 // Wallet/Payment Icon Component
 
@@ -10,7 +12,6 @@ interface AppbarProps {
     email?: string | null;
     image?: string | null;
   };
-  // TODO: can u figure out what the type should be here?
   onSignin: () => void;
   onSignout: () => void;
 }
@@ -20,7 +21,7 @@ export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
     <div className="sticky top-0 z-50">
       <div className="glass-effect border-b border-gray-700/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex  justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16">
             <div
               onClick={() => {
                 if (user) {
@@ -34,8 +35,13 @@ export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
               <div className="w-8 h-8 rounded-lg accent-gradient flex items-center justify-center">
                 <WalletIcon width={20} height={20} />
               </div>
-              <div className="text-3xl font-bold text-gradient">PayMate</div>
+              <div className="text-3xl font-bold text-gradient hidden md:block">
+                PayMate
+              </div>
             </div>
+
+            {/* Mobile menu button */}
+
             <div className="flex items-center space-x-4">
               {user && (
                 <div className="flex items-center space-x-1">
@@ -55,3 +61,5 @@ export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
     </div>
   );
 };
+
+// Icons Fetched from https://heroicons.com/

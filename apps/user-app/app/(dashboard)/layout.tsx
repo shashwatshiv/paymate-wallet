@@ -2,6 +2,7 @@ import { SidebarItem } from "../../components/SidebarItem";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../lib/auth";
+import Hamburger from "../../components/hamburger";
 export const Layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
 
@@ -10,8 +11,8 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-900">
-      <div className="w-72 glass-effect border-r border-gray-700/50 min-h-screen pt-20">
+    <div className="flex min-h-screen bg-gray-900 ">
+      <div className="w-72 glass-effect border-r border-gray-700/50 min-h-screen pt-20 hidden md:block">
         <div className="p-6 space-y-2">
           <SidebarItem
             href={"/dashboard"}
@@ -35,7 +36,10 @@ export const Layout = async ({ children }: { children: React.ReactNode }) => {
           />
         </div>
       </div>
-      <div className="flex-1 p-6 pb-20">{children}</div>
+      <div className="flex-1 p-4 md:p-6 pb-20">
+        {session && <Hamburger></Hamburger>}
+        {children}
+      </div>
     </div>
   );
 };

@@ -90,6 +90,9 @@ const Page = () => {
               </button>
             </p>
           </div>
+          <p className="font-bold"> Test User:</p>
+          <p>Phone Number : 0123456789</p>
+          <p> Password : runaway</p>
         </Card>
       </div>
     </div>

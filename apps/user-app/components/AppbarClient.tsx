@@ -4,7 +4,6 @@ import { Appbar } from "@repo/ui/appbar";
 
 const AppbarClient = () => {
   const session = useSession();
-  console.log(session.data?.user);
 
   return (
     <Appbar

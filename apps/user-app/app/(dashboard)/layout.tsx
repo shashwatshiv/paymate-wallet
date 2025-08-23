@@ -1,11 +1,23 @@
 import { SidebarItem } from "../../components/SidebarItem";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "../lib/auth";
+export const Layout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions);
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+  if (!session) {
+    redirect("/auth/signin?callbackUrl=/dashboard");
+  }
+
   return (
     <div className="flex min-h-screen bg-gray-900">
       <div className="w-72 glass-effect border-r border-gray-700/50 min-h-screen pt-20">
         <div className="p-6 space-y-2">
-          <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Dashboard" />
+          <SidebarItem
+            href={"/dashboard"}
+            icon={<HomeIcon />}
+            title="Dashboard"
+          />
           <SidebarItem
             href={"/transfer"}
             icon={<TransferIcon />}
@@ -23,9 +35,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           />
         </div>
       </div>
-      <div className="flex-1 p-6">
-        {children}
-      </div>
+      <div className="flex-1 p-6">{children}</div>
     </div>
   );
 };

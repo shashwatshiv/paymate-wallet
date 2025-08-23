@@ -30,10 +30,25 @@ export const AddMoney = () => {
     SUPPORTED_BANKS[0]?.name || "",
   );
   const [amount, setAmount] = useState(0);
+  const [error, setError] = useState("");
 
+  async function handleAddMoney() {
+    if (!amount || !providerBank) {
+      setError("All fields are neccessary");
+      return;
+    }
+    if (amount < 10000) {
+      setError("Min. Amount allowed is ₹100");
+      return;
+    } else {
+      const hello = await createOnRampTxn(amount, providerBank);
+      window.location.href = redirectUrl || "";
+    }
+  }
   return (
     <Card title="Add Money to Wallet">
       <div className="space-y-6">
+        {error && <div className="text-red-500 my-2">{error} </div>}
         <TextInput
           label="Amount (₹)"
           placeholder="Enter amount"
@@ -58,14 +73,7 @@ export const AddMoney = () => {
         />
 
         <div className="pt-4">
-          <Button
-            onClick={async () => {
-              await createOnRampTxn(amount, providerBank);
-              window.location.href = redirectUrl || "";
-            }}
-            className="w-full"
-            size="lg"
-          >
+          <Button onClick={handleAddMoney} className="w-full" size="lg">
             Add Money
           </Button>
         </div>

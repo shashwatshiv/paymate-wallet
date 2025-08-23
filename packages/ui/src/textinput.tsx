@@ -1,12 +1,14 @@
 "use client";
 
 export const TextInput = ({
+  maxLength,
   type,
   placeholder,
   onChange,
   label,
   className = "",
 }: {
+  maxLength?: number;
   type: string;
   placeholder: string;
   onChange: (value: string) => void;
@@ -16,11 +18,11 @@ export const TextInput = ({
 }) => {
   return (
     <div className={`space-y-2 ${className}`}>
-      <label className="block text-sm font-medium text-gray-300">
-        {label}
-      </label>
+      <label className="block text-sm font-medium text-gray-300">{label}</label>
       <input
+        maxLength={maxLength}
         onChange={(e) => {
+          
           onChange(e.target.value);
         }}
         type={type}

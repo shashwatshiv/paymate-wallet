@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export function Card({
   title,
   children,
@@ -8,7 +6,7 @@ export function Card({
   title: string;
   children?: React.ReactNode;
   className?: string;
-}): JSX.Element {
+}) {
   return (
     <div className={`glass-effect rounded-xl p-6 card-hover ${className}`}>
       <div className="flex items-center justify-between mb-4">
